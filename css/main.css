@@ -94,29 +94,53 @@ nav > *
 {
     position: relative;
     height: 100%;
+    padding-top: 50px;
     background-color: #EBEBEB;
 }
 
 .tab-settings-wrap
 {
     position: relative;
-    height: 250px;
+    height: 280px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 20px;
     background-color: white;    
 }
 
 .form-row
 {
+    display: inline-block;
     position: relative;
     height: 50px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
+    margin-top: 8px;
+    padding-left: 20px;
+    padding-top: 10px;
     background-color: #E6E6E6;
+    text-align: left;
 }
+
+.form-row > *
+{
+    margin-right: 10px;
+}
+
+.form-row > label:first-child
+{
+    margin-right: 50px;
+}
+
+.form-row > input
+{
+    min-width: 500px;
+    margin-right: 30px;
+}
+
 
 /* ==========================================================================
    Boilerplate base styles: opinionated defaults
