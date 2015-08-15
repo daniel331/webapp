@@ -56,6 +56,11 @@ ol, ul
     list-style-type: none;
 }
 
+iframe
+{
+    border: none;
+}
+
 header .layout-wrap > *
 {
 	display: inline-block;
@@ -140,6 +145,41 @@ nav > *
     min-width: 500px;
     margin-right: 30px;
 }
+
+/* My Folders Tab */
+.tab-content iframe
+{ 
+    height: 95%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.frame-tab > *
+{
+    display: block;
+}
+
+.full-screen-btn
+{
+    position: relative;
+    float: right;
+    padding: 10px;
+    right: 40px;
+    content: url('../img/icons/expand.png');
+}
+
+.full-screen-btn:hover
+{
+    cursor: pointer;
+    background-color: white;
+}
+
+.frame-tab > iframe
+{
+    clear: both;
+}
+
 
 
 /* ==========================================================================

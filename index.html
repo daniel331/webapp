@@ -81,13 +81,13 @@
 
             <div class="tabs">
                 <ul class="nav nav-tabs">
-                    <li id="quickTabBtn" class="active"><a id="quickTabAnchor" href="#quick-reports">Quick Reports</a>
+                    <li id="quick-reports-tabBtn" class="active"><a id="quickTabAnchor" href="#quick-reports">Quick Reports</a>
                     </li>
-                    <li><a href="#fmy-folders">My Folders</a>
+                    <li id="fmy-folders-tabBtn"><a id="fmyTabAnchor" href="#fmy-folders">My Folders</a>
                     </li>
-                    <li><a href="#my-team-folders">My Team Folders</a>
+                    <li id="my-team-folders-tabBtn"><a id="teamTabAnchor" href="#my-team-folders">My Team Folders</a>
                     </li>
-                    <li><a href="#public-folders">Public Folders</a>
+                    <li id="public-folders-tabBtn"><a id="publicTabAnchor" href="#public-folders">Public Folders</a>
                     </li>
                 </ul>
 
@@ -126,7 +126,9 @@
                     </div>
                 </div>
 
-                <div id="fmy-folders" class="tab-content" hidden>
+                <div id="fmy-folders" class="tab-content frame-tab" hidden>
+                    <span class="full-screen-btn"><a href="http://www.paulirish.com" target="_blank"></a></span>
+                    <iframe src="http://www.paulirish.com"></iframe>
                 </div>
 
                 <div id="my-team-folders" class="tab-content" hidden>
