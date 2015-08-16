@@ -11,13 +11,13 @@ function setTab() {
 	var tabName = document.location.hash;
 	tabName = tabName.substring(1);
 	var tabBtn = tabName + "-tabBtn";
+	tabName += "-cont";
 	unselectAllTabs();
 
 	// Select current tab
 	$('#' + tabBtn).addClass('active');
-
-	$(".tab-content").attr('hidden', 'hidden');
-	$('#' + tabName).removeAttr('hidden');
+	$(".tab-content").hide();
+	$('#' + tabName).show();
 		
 }
 
@@ -33,10 +33,14 @@ function openInNewTab()
 
 
 $(document).ready(function(){
+	document.location.hash = '#quick-reports';
 	UTILS.addEvent(window, "hashchange", setTab);
 	$('#quickTabAnchor').click(setHash);
 	$('#fmyTabAnchor').click(setHash);
 	$('#teamTabAnchor').click(setHash);
-	$('#publicTabAnchor').click(setHash);	
+	$('#publicTabAnchor').click(setHash);
+	$(".tab-content").hide(); // hide all tabs
+	$('#quick-reports-cont').show(); // show quick reports tab
+	$(".full-screen-btn").click(openInNewTab);
 
 });
