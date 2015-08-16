@@ -25,9 +25,10 @@ function unselectAllTabs() {
 	$(".tabs li").removeClass('active');
 }
 
-function openInNewTab()
+function openInNewTab(e)
 {
-	var win = window.open('http://www.paulirish.com', '_blank');
+	var link = e.target.childNodes[0].href;
+	var win = window.open(link, '_blank');
   	win.focus();
 }
 
@@ -42,5 +43,6 @@ $(document).ready(function(){
 	$(".tab-content").hide(); // hide all tabs
 	$('#quick-reports-cont').show(); // show quick reports tab
 	$(".full-screen-btn").click(openInNewTab);
+
 
 });
