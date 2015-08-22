@@ -58,7 +58,18 @@ ol, ul
 
 iframe
 {
-    border: none;
+    background: white;
+    border: 1px solid #aaa;
+}
+
+.warning
+{
+    border: 2px solid red;
+}
+
+.warning:focus
+{
+    border: 2px solid DarkViolet;
 }
 
 header .layout-wrap > *
@@ -89,6 +100,19 @@ nav > *
     position: relative;
 }
 
+.notifications
+{
+    position: relative;
+    background-color: #EBEBEB;
+    text-align: left;
+    padding: 10px;
+    padding-left: 15px;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 10px;
+}
+
 .tabs
 {
     position: relative;
@@ -103,15 +127,31 @@ nav > *
     background-color: #EBEBEB;
 }
 
+.corner-icon
+{
+    position: relative;
+    float: right;
+    padding: 10px;
+    right: 38px;
+}
+
+.settings-wheel
+{
+    content: url('../img/icons/settings.png');
+    background-color: white;
+    cursor: pointer;
+}
+
 .tab-settings-wrap
 {
     position: relative;
-    height: 280px;
+    height: 320px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 20px;
-    background-color: white;    
+    background-color: white;
+    clear: right;
 }
 
 .form-row
@@ -146,6 +186,20 @@ nav > *
     width: 30%;
 }
 
+form > fieldset:last-child
+{
+    position: relative;
+    float: right;
+    margin-top: 10px;
+    right: 40px;
+}
+
+form > fieldset:last-child > *
+{
+    margin-left: 10px;
+}
+
+
 /* My Folders Tab */
 .tab-content iframe
 { 
@@ -162,10 +216,6 @@ nav > *
 
 .full-screen-btn
 {
-    position: relative;
-    float: right;
-    padding: 10px;
-    right: 40px;
     content: url('../img/icons/expand.png');
 }
 

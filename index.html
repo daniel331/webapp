@@ -27,8 +27,7 @@
         </header>
 
         <div class="page-body layout-wrap">
-            <div class="notifications">
-            </div>
+            <div class="notifications hidden"></div>
 
             <nav>
                 <div class="nav-section">
@@ -92,6 +91,7 @@
                 </ul>
 
                 <div id="quick-reports-cont" class="tab-content">
+                    <span id="qr-wheel" class="settings-wheel corner-icon"></span>
                     <div class="tab-settings-wrap">
                         <form class="form-inline">
                             <fieldset class="form-row form-group">
@@ -99,75 +99,84 @@
                                 <label for="report01name">Name:</label>
                                 <input id="report01name" type="text">
                                 <label for="report01url">URL:</label>
-                                <input id="report01url"type="text">
+                                <input id="report01url" type="url">
                             </fieldset> 
                             <fieldset class="form-row form-group">
                                 <label>Report 02</label>
                                 <label for="report02name">Name:</label>
                                 <input id="report02name" type="text">
                                 <label for="report02url">URL:</label>
-                                <input id="report02url"type="text">
+                                <input id="report02url" type="url">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Report 03</label>
                                 <label for="report03name">Name:</label>
                                 <input id="report03name" type="text">
                                 <label for="report03url">URL:</label>
-                                <input id="report03url"type="text">
+                                <input id="report03url" type="url">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Report 04</label>
                                 <label for="report04name">Name:</label>
                                 <input id="report04name" type="text">
                                 <label for="report41url">URL:</label>
-                                <input id="report04url"type="text">
-                            </fieldset>                       
+                                <input id="report04url" type="url">
+                            </fieldset>
+                            <fieldset>
+                                <a id="report-cancel" href="">Cancel</a>
+                                <button id="save-rep-form" class="btn btn-primary">Save</button>   
+                            </fieldset>
                         </form>
                     </div>
                 </div>
 
                 <div id="my-folders-cont" class="tab-content frame-tab">
-                    <span class="full-screen-btn"><a href="http://www.paulirish.com" target="_blank"></a></span>
+                    <span class="full-screen-btn corner-icon"><a href="http://www.paulirish.com" target="_blank"></a></span>
                     <iframe src="http://www.paulirish.com"></iframe>
                 </div>
 
                 <div id="my-team-folders-cont" class="tab-content">
+                    <span id="mf-wheel" class="settings-wheel corner-icon"></span>
                     <div class="tab-settings-wrap">
                         <form class="form-inline">
                             <fieldset class="form-row form-group">
                                 <label>Folder 01</label>
-                                <label for="report01name">Name:</label>
-                                <input id="report01name" type="text">
-                                <label for="report01url">URL:</label>
-                                <input id="report01url"type="text">
+                                <label for="folder01name">Name:</label>
+                                <input id="folder01name" type="text">
+                                <label for="folder01url">URL:</label>
+                                <input id="folder01url" type="url">
                             </fieldset> 
                             <fieldset class="form-row form-group">
                                 <label>Folder 02</label>
                                 <label for="folder02name">Name:</label>
                                 <input id="folder02name" type="text">
                                 <label for="folder02url">URL:</label>
-                                <input id="folder02url"type="text">
+                                <input id="folder02url" type="url">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Folder 03</label>
                                 <label for="folder03name">Name:</label>
                                 <input id="folder03name" type="text">
                                 <label for="folder03url">URL:</label>
-                                <input id="folder03url"type="text">
+                                <input id="folder03url" type="url">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Folder 04</label>
                                 <label for="folder04name">Name:</label>
                                 <input id="folder04name" type="text">
                                 <label for="folder41url">URL:</label>
-                                <input id="folder04url"type="text">
-                            </fieldset>                       
+                                <input id="folder04url" type="url">
+                            </fieldset>
+                            <fieldset>
+                                <a id="folders-cancel" href="">Cancel</a>
+                                <button id="save-fold-form" class="btn btn-primary">Save</button>   
+                            </fieldset>
                         </form>
                     </div>
                 </div>
 
                 <div id="public-folders-cont" class="tab-content frame-tab">
-                    <span class="full-screen-btn"><a href="http://addyosmani.com" target="_blank"></a></span>
+                    <span class="full-screen-btn corner-icon"><a href="http://addyosmani.com" target="_blank"></a></span>
                     <iframe src="http://addyosmani.com"></iframe>
                 </div>
             </div>
