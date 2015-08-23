@@ -1,3 +1,5 @@
+var quickBookmarks = [];
+
 
 function setHash() {
 	var pageTop = $(window).scrollTop();
@@ -161,6 +163,9 @@ $(document).ready(function(){
 		if (isFormValid("quick-reports-cont"))
 		{
 			toggleVisibility($('#quick-reports-cont .tab-settings-wrap'));
+
+			$('#quick-reports-cont .bookmarks').append($('<option>', {value:1, text:'One'}));
+
 		}
 	});
 

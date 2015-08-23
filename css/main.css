@@ -144,11 +144,12 @@ nav > *
 
 .tab-settings-wrap
 {
-    position: relative;
+    position: absolute;
     height: 320px;
     width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin: 30px 50px;*/
+    top: 94px;
+    right: 38px;
     padding-top: 20px;
     background-color: white;
     clear: right;
@@ -203,15 +204,11 @@ form > fieldset:last-child > *
 /* My Folders Tab */
 .tab-content iframe
 { 
+    display: block;
     height: 95%;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-}
-
-.frame-tab > *
-{
-    display: block;
 }
 
 .full-screen-btn
@@ -225,9 +222,14 @@ form > fieldset:last-child > *
     background-color: white;
 }
 
-.frame-tab > iframe
+.frame-tab > iframe, .tab-content > iframe
 {
     clear: both;
+}
+
+.bookmarks
+{
+    margin-left: 22px;
 }
 
 
