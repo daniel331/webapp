@@ -135,6 +135,14 @@ nav > *
     right: 38px;
 }
 
+.corner-second-icon
+{
+    position: relative;
+    float: right;
+    padding: 14px;
+    right: 38px;
+}
+
 .settings-wheel
 {
     content: url('../img/icons/settings.png');

@@ -1,4 +1,4 @@
-var quickBookmarks = [];
+var quickBookmarks = [null, null ,null];
 
 
 function setHash() {
@@ -109,6 +109,49 @@ function isFormValid(containerName)
 	}
 }
 
+function saveQuickBookmarks()
+{
+	$('#quick-reports-cont input:valid').removeClass('warning');
+	$('#quick-reports-cont input:invalid').addClass('warning');
+
+	if (isFormValid("quick-reports-cont"))
+	{
+		toggleVisibility($('#quick-reports-cont .tab-settings-wrap'));
+
+		// Remove previous bookmarks
+		quickBookmarks = [];
+		var bookmarkCombo = $('#quick-reports-cont .bookmarks');
+		bookmarkCombo.empty();
+
+		// Add new bookmarks
+		for(i = 1; i <= 3; i++)
+		{
+			var nameField = "report0" + i + "name";
+			if ($('#' + nameField).get(0).value != "")
+			{
+				var urlField = "report0" + i + "url";
+				var record = {value: $('#' + urlField).get(0).value , text: $('#' + nameField).get(0).value};
+
+				quickBookmarks.push(record);
+				bookmarkCombo.append($('<option>', record));
+			}
+		}
+
+		if (quickBookmarks.length == 0)
+		{
+			$('#quick-rep-iframe').hide();
+			bookmarkCombo.hide();
+		}
+		else
+		{
+			$('#quick-rep-iframe').show();
+			bookmarkCombo.show();
+			bookmarkCombo.trigger('change');
+		}
+	}
+
+}
+
 
 $(document).ready(function(){
 	document.location.hash = '#quick-reports';
@@ -156,18 +199,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#save-rep-form').click(function() {
-		$('#quick-reports-cont input:valid').removeClass('warning');
-		$('#quick-reports-cont input:invalid').addClass('warning');
-
-		if (isFormValid("quick-reports-cont"))
-		{
-			toggleVisibility($('#quick-reports-cont .tab-settings-wrap'));
-
-			$('#quick-reports-cont .bookmarks').append($('<option>', {value:1, text:'One'}));
-
-		}
-	});
+	$('#save-rep-form').click(saveQuickBookmarks);
 
 	$('#save-fold-form').click(function() {
 		$('#my-team-folders-cont input:valid').removeClass('warning');
@@ -178,6 +210,16 @@ $(document).ready(function(){
 			toggleVisibility($('#my-team-folders-cont .tab-settings-wrap'));
 		}
 	});
+
+	$('#quick-reports-cont .bookmarks').change(function() {
+    	var selectedURL = this.value;
+    	$('#quick-rep-iframe').attr('src',selectedURL);
+    	var expandAnchor = $('#quick-reports-cont .full-screen-btn').get(0).children[0];
+    	expandAnchor.setAttribute('href', selectedURL);
+
+	});
+
+
 
 
 
