@@ -269,9 +269,14 @@ function populateFoldersSettings()
 function loadFromLocalStorage()
 {
 	var dataString = localStorage.getItem('webappData');
-	quickBookmarks = JSON.parse(dataString.split('$')[0]);
-	foldersBookmarks = JSON.parse(dataString.split('$')[1]);
-	var prevHash = dataString.split('$')[2];
+	var prevHash;
+
+	if (dataString)
+	{
+		quickBookmarks = JSON.parse(dataString.split('$')[0]);
+		foldersBookmarks = JSON.parse(dataString.split('$')[1]);
+		prevHash = dataString.split('$')[2];
+	}	
 	
 	if (prevHash)
 	{
