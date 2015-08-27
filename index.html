@@ -20,8 +20,9 @@
           <div class="layout-wrap">
             <a href="#quick-reports"><img src="img/logo-netcraft.svg" alt="netcraft"></a>
 
-            <form class="search-box" method="get" action="http://www.google.com">
-                <input type="search" name="q" placeholder="search">
+            <form class="search-box">
+                <input type="search" id="q" name="q" placeholder="search">
+                <button id="murik">Go</button>
             </form>
           </div>
         </header>
@@ -96,36 +97,29 @@
                         </select>
                     </div>
                     <span id="qr-wheel" class="settings-wheel corner-icon"></span>
-                    <span class="full-screen-btn corner-second-icon"><a href="http://www.paulirish.com" target="_blank"></a></span>
+                    <span class="full-screen-btn corner-second-icon"><a href="" target="_blank"></a></span>
                     <div class="tab-settings-wrap">
                         <form class="form-inline">
                             <fieldset class="form-row form-group">
                                 <label>Report 01</label>
                                 <label for="report01name">Name:</label>
-                                <input id="report01name" type="text">
+                                <input id="report01name" type="text" placeholder="Site Name">
                                 <label for="report01url">URL:</label>
-                                <input id="report01url" type="url">
+                                <input id="report01url" type="url" placeholder="http://www...">
                             </fieldset> 
                             <fieldset class="form-row form-group">
                                 <label>Report 02</label>
                                 <label for="report02name">Name:</label>
-                                <input id="report02name" type="text">
+                                <input id="report02name" type="text" placeholder="Site Name">
                                 <label for="report02url">URL:</label>
-                                <input id="report02url" type="url">
+                                <input id="report02url" type="url" placeholder="http://www...">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Report 03</label>
                                 <label for="report03name">Name:</label>
-                                <input id="report03name" type="text">
+                                <input id="report03name" type="text" placeholder="Site Name">
                                 <label for="report03url">URL:</label>
-                                <input id="report03url" type="url">
-                            </fieldset>
-                            <fieldset class="form-row form-group">
-                                <label>Report 04</label>
-                                <label for="report04name">Name:</label>
-                                <input id="report04name" type="text">
-                                <label for="report41url">URL:</label>
-                                <input id="report04url" type="url">
+                                <input id="report03url" type="url" placeholder="http://www...">
                             </fieldset>
                             <fieldset>
                                 <a id="report-cancel" href="">Cancel</a>
@@ -142,36 +136,34 @@
                 </div>
 
                 <div id="my-team-folders-cont" class="tab-content">
+                    <div class="col-xs-2">
+                        <select class="form-control bookmarks">
+                        </select>
+                    </div>
                     <span id="mf-wheel" class="settings-wheel corner-icon"></span>
+                    <span class="full-screen-btn corner-second-icon"><a href="" target="_blank"></a></span>
                     <div class="tab-settings-wrap">
                         <form class="form-inline">
                             <fieldset class="form-row form-group">
                                 <label>Folder 01</label>
                                 <label for="folder01name">Name:</label>
-                                <input id="folder01name" type="text">
+                                <input id="folder01name" type="text" placeholder="Site Name">
                                 <label for="folder01url">URL:</label>
-                                <input id="folder01url" type="url">
+                                <input id="folder01url" type="url" placeholder="http://www...">
                             </fieldset> 
                             <fieldset class="form-row form-group">
                                 <label>Folder 02</label>
                                 <label for="folder02name">Name:</label>
-                                <input id="folder02name" type="text">
+                                <input id="folder02name" type="text" placeholder="Site Name">
                                 <label for="folder02url">URL:</label>
-                                <input id="folder02url" type="url">
+                                <input id="folder02url" type="url" placeholder="http://www...">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Folder 03</label>
                                 <label for="folder03name">Name:</label>
-                                <input id="folder03name" type="text">
+                                <input id="folder03name" type="text" placeholder="Site Name">
                                 <label for="folder03url">URL:</label>
-                                <input id="folder03url" type="url">
-                            </fieldset>
-                            <fieldset class="form-row form-group">
-                                <label>Folder 04</label>
-                                <label for="folder04name">Name:</label>
-                                <input id="folder04name" type="text">
-                                <label for="folder41url">URL:</label>
-                                <input id="folder04url" type="url">
+                                <input id="folder03url" type="url" placeholder="http://www...">
                             </fieldset>
                             <fieldset>
                                 <a id="folders-cancel" href="">Cancel</a>
@@ -179,6 +171,7 @@
                             </fieldset>
                         </form>
                     </div>
+                    <iframe id="team-fold-iframe"></iframe>
                 </div>
 
                 <div id="public-folders-cont" class="tab-content frame-tab">

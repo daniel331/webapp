@@ -19,7 +19,7 @@ html
 body
 {
     margin: 0;
-    background-image: url('/img/body-background.jpg') ;
+    background-image: url('../img/body-background.jpg') ;
     background-position: center;
     background-repeat: no-repeat; 
     font-family: 'Open Sans', sans-serif;
@@ -153,9 +153,8 @@ nav > *
 .tab-settings-wrap
 {
     position: absolute;
-    height: 320px;
+    height: 260px;
     width: 95%;
-    /*margin: 30px 50px;*/
     top: 94px;
     right: 38px;
     padding-top: 20px;
