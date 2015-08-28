@@ -48,7 +48,24 @@ body > header
 
 a
 {
-    text-decoration: none;
+    text-decoration: none !important;
+}
+
+a:hover
+{
+    text-decoration: none !important;
+    color: white !important;
+}
+
+a:active
+{
+    text-decoration: none !important;
+}
+
+a:focus
+{
+    color: white !important;
+    background-color: #525252;
 }
 
 ol, ul
@@ -117,6 +134,52 @@ nav > *
 {
     position: relative;
     height: 100%;
+}
+
+.tabs-list
+{
+    padding: 0;
+    text-align: left;
+    margin-bottom: 0;
+    height: 50px;
+}
+
+.tabs-list > li
+{
+    float: left;
+    text-align: center;
+    background-color: #636363;
+    width: 23.5%;
+    height: 100px;
+    margin-right: 2%;
+    line-height: 50px;    
+}
+
+.tabs-list > li:hover
+{
+    background-color: #525252;
+}
+
+.tabs-list > li:last-child
+{
+    margin-right: 0;
+}
+
+.tabs-list a
+{
+    display: block;
+    position: relative;
+    color: white;
+}
+
+.active-tab, .active-tab a:focus
+{
+    background-color: #EBEBEB !important;
+}
+
+.active-tab > a, .active-tab a:hover
+{
+    color: #393939 !important;
 }
 
 .tab-content

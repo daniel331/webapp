@@ -1,17 +1,19 @@
 var quickBookmarks = [];
 var foldersBookmarks = [];
+var tabHashes = ["#quick-reports", "#my-folders", "#my-team-folders", "#public-folders"];
 
 
-function setHash() {
+function setHash()
+{
 	var pageTop = $(window).scrollTop();
 		document.location.hash = $(this).attr("href");
 		$(window).scrollTop(pageTop);
-		saveToLocalStorage();
 		return false;
 }
 
 
-function setTab() {
+function setTab()
+{
 	var tabName = document.location.hash;
 	tabName = tabName.substring(1);
 	var tabBtn = tabName + "-tabBtn";
@@ -19,15 +21,44 @@ function setTab() {
 	unselectAllTabs();
 
 	// Select current tab
-	$('#' + tabBtn).addClass('active');
+	$('#' + tabBtn).addClass('active-tab');
 	$(".tab-content").hide();
 	$('#' + tabName).show();
+
+	saveToLocalStorage();
 		
 }
 
-function unselectAllTabs() {
-	$(".tabs li").removeClass('active');
+
+function unselectAllTabs()
+{
+	$(".tabs li").removeClass('active-tab');
 }
+
+
+function keyboardNav(event)
+{
+	var key = event.keyCode;
+	var currTab = tabHashes.indexOf(document.location.hash);
+
+	// Check the validity of the current tab
+	// Don't allow tab navigation while typing in one of the forms
+	if ((currTab === -1) || ($('input:focus').length != 0))
+	{
+		return true;
+	}
+
+	if ((key === 39) && (currTab < 3)) // right arrow
+	{
+		document.location.hash = tabHashes[currTab + 1];
+	}
+	else if ((key === 37) && (currTab > 0)) // left arrow
+	{
+		document.location.hash = tabHashes[currTab - 1];
+	}
+
+}
+
 
 function openInNewTab(e)
 {
@@ -35,6 +66,7 @@ function openInNewTab(e)
 	var win = window.open(link, '_blank');
   	win.focus();
 }
+
 
 function getNotification()
 {
@@ -47,6 +79,7 @@ function getNotification()
 
 	});
 }
+
 
 function toggleVisibility(el)
 {
@@ -62,6 +95,7 @@ function toggleVisibility(el)
 	}
 }
 
+
 function getPairedFormField(fieldId)
 {
 	var pairName = fieldId.substring(0,8);
@@ -70,6 +104,7 @@ function getPairedFormField(fieldId)
 	
 	return ($('#' + pairName)[0]);
 }
+
 
 function toggleValidationDependency(field)
 {
@@ -83,6 +118,7 @@ function toggleValidationDependency(field)
 	}
 }
 
+
 function addRequiredDependency(field)
 {
 	if(!field.hasAttribute('required'))
@@ -91,6 +127,7 @@ function addRequiredDependency(field)
 	}
 }
 
+
 function removeRequiredDependency(field)
 {
 	if(field.hasAttribute('required'))
@@ -98,6 +135,7 @@ function removeRequiredDependency(field)
 		field.removeAttribute('required');
 	}
 }
+
 
 function isFormValid(containerName)
 {
@@ -282,6 +320,10 @@ function loadFromLocalStorage()
 	{
 		document.location.hash = prevHash;
 	}
+	else
+	{
+		document.location.hash = "#quick-reports";
+	}
 
 	populateQuickBookmarks();
 	populateFoldersBookmarks();
@@ -421,6 +463,8 @@ $(document).ready(function(){
 	$('#murik').click(searchBookmark);
 
 	loadFromLocalStorage();
+
+	document.onkeydown = keyboardNav;
 
 
 
