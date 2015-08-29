@@ -41,22 +41,34 @@ function keyboardNav(event)
 	var key = event.keyCode;
 	var currTab = tabHashes.indexOf(document.location.hash);
 
-	// Check the validity of the current tab
-	// Don't allow tab navigation while typing in one of the forms
-	if ((currTab === -1) || ($('input:focus').length != 0))
+	// 'Esc' on a Quick Reports form field
+	if ((key === 27) && ($.contains($('#quick-reports-cont').get(0), event.target)))
 	{
+		toggleVisibility($('#quick-reports-cont .tab-settings-wrap'));
 		return true;
 	}
-
-	if ((key === 39) && (currTab < 3)) // right arrow
+	// 'Esc' on a Team Folders form field
+	else if ((key === 27) && ($.contains($('#my-team-folders-cont').get(0), event.target)))
 	{
-		document.location.hash = tabHashes[currTab + 1];
+		toggleVisibility($('#my-team-folders-cont .tab-settings-wrap'));
+		return true;
 	}
-	else if ((key === 37) && (currTab > 0)) // left arrow
+	// Check the validity of the current tab and not being inside a form before allowing tab navigation
+	else if ((currTab != -1) && !($.contains($('#quick-reports-cont').get(0), event.target)) && !($.contains($('#my-team-folders-cont').get(0), event.target)))
 	{
-		document.location.hash = tabHashes[currTab - 1];
+		// Right arrow
+		if ((key === 39) && (currTab < 3))
+		{
+			document.location.hash = tabHashes[currTab + 1];
+		}
+		// Left arrow
+		else if ((key === 37) && (currTab > 0))
+		{
+			document.location.hash = tabHashes[currTab - 1];
+		}
 	}
-
+	
+	return true;
 }
 
 
@@ -200,10 +212,12 @@ function saveQuickBookmarks()
 		{
 			$('#quick-rep-iframe').show();
 			bookmarkCombo.show();
+			bookmarkCombo.get(0).selectedIndex = (quickBookmarks.length - 1); // choose last option
 			bookmarkCombo.trigger('change');
 		}
+
+		return false;
 	}
-	return false;
 }
 
 
@@ -245,10 +259,12 @@ function saveFoldersBookmarks()
 		{
 			$('#team-fold-iframe').show();
 			bookmarkCombo.show();
+			bookmarkCombo.get(0).selectedIndex = (foldersBookmarks.length - 1); // choose last option
 			bookmarkCombo.trigger('change');
 		}
+
+		return false;
 	}
-	return false;
 }
 
 
@@ -460,7 +476,7 @@ $(document).ready(function(){
     	expandAnchor.setAttribute('href', selectedURL);
 	});
 
-	$('#murik').click(searchBookmark);
+	$('#searchGo').click(searchBookmark);
 
 	loadFromLocalStorage();
 
