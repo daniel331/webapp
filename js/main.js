@@ -1,41 +1,46 @@
+/* Global Variables */
 var quickBookmarks = [];
 var foldersBookmarks = [];
 var tabHashes = ["#quick-reports", "#my-folders", "#my-team-folders", "#public-folders"];
 
-
+/* Set URL hash */
 function setHash()
 {
 	var pageTop = $(window).scrollTop();
-		document.location.hash = $(this).attr("href");
-		$(window).scrollTop(pageTop);
-		return false;
+	document.location.hash = $(this).attr("href");
+	$(window).scrollTop(pageTop);
+	return false;
 }
 
 
+/* Open the selected tab and mark it as active */
 function setTab()
 {
+	// Get the selected tab
 	var tabName = document.location.hash;
 	tabName = tabName.substring(1);
 	var tabBtn = tabName + "-tabBtn";
 	tabName += "-cont";
+
 	unselectAllTabs();
 
-	// Select current tab
+	// Select current tab and open its content
 	$('#' + tabBtn).addClass('active-tab');
 	$(".tab-content").hide();
 	$('#' + tabName).show();
 
-	saveToLocalStorage();
-		
+	saveToLocalStorage();		
 }
 
 
+/* Unselect all tab buttons */
 function unselectAllTabs()
 {
 	$(".tabs li").removeClass('active-tab');
 }
 
 
+/* Listener for all keyboard activity, allowing navigation */
 function keyboardNav(event)
 {
 	var key = event.keyCode;
@@ -44,26 +49,31 @@ function keyboardNav(event)
 	// 'Esc' on a Quick Reports form field
 	if ((key === 27) && ($.contains($('#quick-reports-cont').get(0), event.target)))
 	{
+		// Hide settings panel
 		toggleVisibility($('#quick-reports-cont .tab-settings-wrap'));
 		return true;
 	}
 	// 'Esc' on a Team Folders form field
 	else if ((key === 27) && ($.contains($('#my-team-folders-cont').get(0), event.target)))
 	{
+		// Hide settings panel
 		toggleVisibility($('#my-team-folders-cont .tab-settings-wrap'));
 		return true;
 	}
 	// Check the validity of the current tab and not being inside a form before allowing tab navigation
-	else if ((currTab != -1) && !($.contains($('#quick-reports-cont').get(0), event.target)) && !($.contains($('#my-team-folders-cont').get(0), event.target)))
+	else if ((currTab != -1) && !($.contains($('#quick-reports-cont').get(0), event.target)) &&
+			 !($.contains($('#my-team-folders-cont').get(0), event.target)))
 	{
 		// Right arrow
 		if ((key === 39) && (currTab < 3))
 		{
+			// Open next tab
 			document.location.hash = tabHashes[currTab + 1];
 		}
 		// Left arrow
 		else if ((key === 37) && (currTab > 0))
 		{
+			// Open previous tab
 			document.location.hash = tabHashes[currTab - 1];
 		}
 	}
@@ -72,6 +82,7 @@ function keyboardNav(event)
 }
 
 
+/* Open a link in a new tab */
 function openInNewTab(e)
 {
 	var link = e.target.childNodes[0].href;
@@ -80,11 +91,13 @@ function openInNewTab(e)
 }
 
 
+/* Get the notification from the data file and display it */
 function getNotification()
 {
 	$.get("data/config.json", "json", function(res){
 		if (res["notification"])
 		{
+			// Display notification
 			$('.notifications').text(res["notification"]);
 			$('.notifications').removeClass('hidden');
 		}
@@ -93,24 +106,30 @@ function getNotification()
 }
 
 
+/* Make a visible element hidden and vise-versa */
 function toggleVisibility(el)
 {
+	// Hidden element
 	if (el.hasClass('hidden'))
 	{
+		// Make visible
 		el.removeClass('hidden');
 		return true;
 	}
+	// Visible element
 	else
 	{
+		// Make hidden
 		el.addClass('hidden');
 		return false;
 	}
 }
 
 
+/* Given an element, get the other element in its Name-URL pair */
 function getPairedFormField(fieldId)
 {
-	var pairName = fieldId.substring(0,8);
+	var pairName = fieldId.substring(0, 8);
 
 	pairName += ((fieldId.endsWith("name")) ? "url" : "name");
 	
@@ -118,7 +137,7 @@ function getPairedFormField(fieldId)
 }
 
 
-function toggleValidationDependency(field)
+/*function toggleValidationDependency(field)
 {
 	if(field.hasAttribute('required'))
 	{
@@ -128,9 +147,10 @@ function toggleValidationDependency(field)
 	{
 		field.setAttribute('required', 'true');
 	}
-}
+}*/
 
 
+/* Make a form field required */
 function addRequiredDependency(field)
 {
 	if(!field.hasAttribute('required'))
@@ -140,6 +160,7 @@ function addRequiredDependency(field)
 }
 
 
+/* Make a required form field unrequired */
 function removeRequiredDependency(field)
 {
 	if(field.hasAttribute('required'))
@@ -149,6 +170,7 @@ function removeRequiredDependency(field)
 }
 
 
+/* Check whether the form inside the given container is fully valid */
 function isFormValid(containerName)
 {
 	if ($('#' + containerName + ' form:valid').length != 0)
@@ -162,25 +184,79 @@ function isFormValid(containerName)
 }
 
 
+/* Check whether the given string is a valid URL */
 function isURLValid(url)
 {
-	var regExp = /^(?:(?:https?|ftp):\/\/)*(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/i;
+	// Full URL check, allowing neglecting the protocol part - taken from the internet
+	var regStr = "^(?!mailto:)(?:(?:http|https|ftp)://)?(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
+				   "(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|" +
+				   "(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*" +
+				   "[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)" +
+				   "(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$";
+	var regExp = new RegExp(regStr, 'i');
+
 	return (regExp.test(url));
 }
 
 
+/* Add Http protocol to a URL string, in case it donesn't have one already */
+function prependHttp(url)
+{
+	var regExp = /^(https?:\/\/)/i;
+
+    if (!regExp.test(url))
+    {
+		url = "http://" + url;
+	}
+
+	return url;
+}
+
+
+/* Save bookmarks settings for the Quick Reports tab */
 function saveQuickBookmarks()
 {
 	$('#quick-reports-cont input:valid').removeClass('warning');
 	$('#quick-reports-cont input:invalid').addClass('warning');
 
-	/*if (!isURLValid($('#report01url').get(0).value))
+	// Check validy of non-empty URL fields
+	for(i = 1; i <= 3; i++)
 	{
-		$('#report01url').get(0).setCustomValidity("Error!");
-	}*/
+		var urlField = $('#report0' + i + 'url');
 
+		// Check validity
+		if ((urlField.get(0).value != "") && (!isURLValid(urlField.get(0).value)))
+		{
+			urlField.addClass('warning');
+			urlField.get(0).setCustomValidity('Please enter a valid URL.');
+		}
+		else
+		{
+			urlField.get(0).setCustomValidity('');
+
+			// Only remove warning state for unrequired fields
+			if ((urlField.get(0).value != "") || !urlField.get(0).hasAttribute('required'))
+			{
+				urlField.removeClass('warning');
+			}
+		}
+	}
+
+	// Save the data if the form is valid
 	if (isFormValid("quick-reports-cont"))
 	{
+		// Add 'http' prefix to URLs, if needed
+		for(i = 1; i <= 3; i++)
+		{
+			var urlField = $('#report0' + i + 'url').get(0);
+
+			if (urlField.value != "")
+			{
+				urlField.value = prependHttp(urlField.value);	
+			}			
+		}
+
+		// Hide panel
 		toggleVisibility($('#quick-reports-cont .tab-settings-wrap'));
 
 		// Remove previous bookmarks
@@ -200,19 +276,22 @@ function saveQuickBookmarks()
 			}
 		}
 
+		// Fill combobox and and save data to local storage
 		populateQuickBookmarks();
 		saveToLocalStorage();
 
+		// Hide components incase of no bookmarks
 		if (quickBookmarks.length == 0)
 		{
 			$('#quick-rep-iframe').hide();
 			bookmarkCombo.hide();
 		}
+		// Show components, otherwise
 		else
 		{
 			$('#quick-rep-iframe').show();
 			bookmarkCombo.show();
-			bookmarkCombo.get(0).selectedIndex = (quickBookmarks.length - 1); // choose last option
+			bookmarkCombo.get(0).selectedIndex = (quickBookmarks.length - 1); // Choose last option
 			bookmarkCombo.trigger('change');
 		}
 
@@ -221,13 +300,50 @@ function saveQuickBookmarks()
 }
 
 
+/* Save bookmarks settings for the Team Folders tab */
 function saveFoldersBookmarks()
 {
 	$('#my-team-folders-cont input:valid').removeClass('warning');
 	$('#my-team-folders-cont input:invalid').addClass('warning');
 
+	// Check validy of non-empty URL fields
+	for(i = 1; i <= 3; i++)
+	{
+		var urlField = $('#folder0' + i + 'url');
+
+		// Check validity
+		if ((urlField.get(0).value != "") && (!isURLValid(urlField.get(0).value)))
+		{
+			urlField.addClass('warning');
+			urlField.get(0).setCustomValidity('Please enter a valid URL.');
+		}
+		else
+		{
+			urlField.get(0).setCustomValidity('');
+
+			// Only remove warning state for unrequired fields
+			if ((urlField.get(0).value != "") || !urlField.get(0).hasAttribute('required'))
+			{
+				urlField.removeClass('warning');
+			}
+		}
+	}
+
+	// Save the data if the form is valid
 	if (isFormValid("my-team-folders-cont"))
 	{
+		// Add 'http' prefix to URLs, if needed
+		for(i = 1; i <= 3; i++)
+		{
+			var urlField = $('#folder0' + i + 'url').get(0);
+
+			if (urlField.value != "")
+			{
+				urlField.value = prependHttp(urlField.value);	
+			}			
+		}
+
+		// Hide panel
 		toggleVisibility($('#my-team-folders-cont .tab-settings-wrap'));
 
 		// Remove previous bookmarks
@@ -247,14 +363,17 @@ function saveFoldersBookmarks()
 			}
 		}
 
+		// Fill combobox and and save data to local storage
 		populateFoldersBookmarks();
 		saveToLocalStorage();
 
+		// Hide components incase of no bookmarks
 		if (foldersBookmarks.length == 0)
 		{
 			$('#team-fold-iframe').hide();
 			bookmarkCombo.hide();
 		}
+		// Show components, otherwise
 		else
 		{
 			$('#team-fold-iframe').show();
@@ -268,6 +387,7 @@ function saveFoldersBookmarks()
 }
 
 
+/* Fill the Quick Reports tab bookmarks combobox from the global array */
 function populateQuickBookmarks()
 {
 	for(i = 0; i < quickBookmarks.length; i++)
@@ -277,6 +397,7 @@ function populateQuickBookmarks()
 }
 
 
+/* Fill the Team Folders tab bookmarks combobox from the global array */
 function populateFoldersBookmarks()
 {
 	for(i = 0; i < foldersBookmarks.length; i++)
@@ -286,6 +407,7 @@ function populateFoldersBookmarks()
 }
 
 
+/* Save both bookmark collections and last visited tab to local storage */
 function saveToLocalStorage()
 {
 	var dataString = JSON.stringify(quickBookmarks) + '$' + JSON.stringify(foldersBookmarks) + '$' + document.location.hash;
@@ -294,6 +416,7 @@ function saveToLocalStorage()
 }
 
 
+/* Fill Quick Reports tab's settings panel with bookmarks from global array */
 function populateQuickSettings()
 {
 	for(i = 0; i < quickBookmarks.length; i++)
@@ -301,12 +424,17 @@ function populateQuickSettings()
 		var nameField = "report0" + (i + 1) + "name";
 		var urlField = "report0" + (i + 1) + "url";
 
+		// Fill fields and add 'required' dependencies
 		$('#' + nameField).get(0).value = quickBookmarks[i].text;
+		addRequiredDependency($('#' + nameField).get(0));
+
 		$('#' + urlField).get(0).value = quickBookmarks[i].value;
+		addRequiredDependency($('#' + urlField).get(0));
 	}
 }
 
 
+/* Fill Team Folders tab's settings panel with bookmarks from global array */
 function populateFoldersSettings()
 {
 	for(i = 0; i < foldersBookmarks.length; i++)
@@ -314,17 +442,23 @@ function populateFoldersSettings()
 		var nameField = "folder0" + (i + 1) + "name";
 		var urlField = "folder0" + (i + 1) + "url";
 
+		// Fill fields and add 'required' dependencies
 		$('#' + nameField).get(0).value = foldersBookmarks[i].text;
+		addRequiredDependency($('#' + nameField).get(0));
+
 		$('#' + urlField).get(0).value = foldersBookmarks[i].value;
+		addRequiredDependency($('#' + urlField).get(0));
 	}
 }
 
 
+/* Load both bookmarks collections and last visited tab from local storage */
 function loadFromLocalStorage()
 {
 	var dataString = localStorage.getItem('webappData');
 	var prevHash;
 
+	// Fill global arrays if the data is present
 	if (dataString)
 	{
 		quickBookmarks = JSON.parse(dataString.split('$')[0]);
@@ -332,21 +466,25 @@ function loadFromLocalStorage()
 		prevHash = dataString.split('$')[2];
 	}	
 	
+	// Go to the last visited tab, if there is one
 	if (prevHash)
 	{
 		document.location.hash = prevHash;
 	}
+	// Go to the first tab as default, otherwise
 	else
 	{
 		document.location.hash = "#quick-reports";
 	}
 
+	// Fill combos and forms
 	populateQuickBookmarks();
 	populateFoldersBookmarks();
 
 	populateQuickSettings();
 	populateFoldersSettings();
 
+	// Show or hide components according to existance of bookmarks
 	if (quickBookmarks.length != 0)
 	{
 		$('#quick-reports-cont .bookmarks').get(0).selectedIndex = 0;
@@ -373,6 +511,7 @@ function loadFromLocalStorage()
 }
 
 
+/* Search a bookmarked site by name. If found - jump to it */
 function searchBookmark(event)
 {
 	event.preventDefault();
@@ -406,6 +545,7 @@ function searchBookmark(event)
 		}
 	}
 
+	// If not found - display a notification
 	$('.notifications').removeClass('hidden');
 	$('.notifications').text('The searched report \"' + searchVal + '\" was not found.');
 	return false;

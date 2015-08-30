@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>WebApp</title>
+        <link rel="icon" href="img/icons/favicon.ico">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -90,13 +90,29 @@
 
             <div class="tabs">
                 <ul class="tabs-list">
-                    <li id="quick-reports-tabBtn" class="active-tab"><a id="quickTabAnchor" href="#quick-reports">Quick Reports</a>
+                    <li id="quick-reports-tabBtn" class="active-tab">
+                        <a id="quickTabAnchor" href="#quick-reports">
+                            <span class="glyphicon glyphicon-new-window"></span> 
+                            Quick Reports
+                        </a>
                     </li>
-                    <li id="my-folders-tabBtn"><a id="myTabAnchor" href="#my-folders">My Folders</a>
+                    <li id="my-folders-tabBtn">
+                        <a id="myTabAnchor" href="#my-folders">
+                            <span class="glyphicon glyphicon-star"></span> 
+                            My Folders
+                        </a>
                     </li>
-                    <li id="my-team-folders-tabBtn"><a id="teamTabAnchor" href="#my-team-folders">My Team Folders</a>
+                    <li id="my-team-folders-tabBtn">
+                        <a id="teamTabAnchor" href="#my-team-folders">
+                            <span class="glyphicon glyphicon-folder-open"></span> 
+                            My Team Folders
+                        </a>
                     </li>
-                    <li id="public-folders-tabBtn"><a id="publicTabAnchor" href="#public-folders">Public Folders</a>
+                    <li id="public-folders-tabBtn">
+                        <a id="publicTabAnchor" href="#public-folders">
+                            <span class="glyphicon glyphicon-file"></span> 
+                            Public Folders
+                        </a>
                     </li>
                 </ul>
 
@@ -114,21 +130,21 @@
                                 <label for="report01name">Name:</label>
                                 <input id="report01name" type="text" placeholder="Site Name">
                                 <label for="report01url">URL:</label>
-                                <input id="report01url" type="url" placeholder="http://www...">
+                                <input id="report01url" type="text" placeholder="http://www...">
                             </fieldset> 
                             <fieldset class="form-row form-group">
                                 <label>Report 02</label>
                                 <label for="report02name">Name:</label>
                                 <input id="report02name" type="text" placeholder="Site Name">
                                 <label for="report02url">URL:</label>
-                                <input id="report02url" type="url" placeholder="http://www...">
+                                <input id="report02url" type="text" placeholder="http://www...">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Report 03</label>
                                 <label for="report03name">Name:</label>
                                 <input id="report03name" type="text" placeholder="Site Name">
                                 <label for="report03url">URL:</label>
-                                <input id="report03url" type="url" placeholder="http://www...">
+                                <input id="report03url" type="text" placeholder="http://www...">
                             </fieldset>
                             <fieldset>
                                 <a id="report-cancel" href="">Cancel</a>
@@ -158,21 +174,21 @@
                                 <label for="folder01name">Name:</label>
                                 <input id="folder01name" type="text" placeholder="Site Name">
                                 <label for="folder01url">URL:</label>
-                                <input id="folder01url" type="url" placeholder="http://www...">
+                                <input id="folder01url" type="text" placeholder="http://www...">
                             </fieldset> 
                             <fieldset class="form-row form-group">
                                 <label>Folder 02</label>
                                 <label for="folder02name">Name:</label>
                                 <input id="folder02name" type="text" placeholder="Site Name">
                                 <label for="folder02url">URL:</label>
-                                <input id="folder02url" type="url" placeholder="http://www...">
+                                <input id="folder02url" type="text" placeholder="http://www...">
                             </fieldset>
                             <fieldset class="form-row form-group">
                                 <label>Folder 03</label>
                                 <label for="folder03name">Name:</label>
                                 <input id="folder03name" type="text" placeholder="Site Name">
                                 <label for="folder03url">URL:</label>
-                                <input id="folder03url" type="url" placeholder="http://www...">
+                                <input id="folder03url" type="text" placeholder="http://www...">
                             </fieldset>
                             <fieldset>
                                 <a id="folders-cancel" href="">Cancel</a>

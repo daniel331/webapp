@@ -10,6 +10,8 @@
    Daniel's custom styles
    ========================================================================== */
 
+/* General */
+
 html
 {
     box-sizing: border-box;
@@ -27,23 +29,6 @@ body
     background-attachment: fixed;   
     background-size: cover;
     height: 100%;
-}
-
-header
-{
-	background-color: black;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-body > header
-{
-    display: block;
-    width: 100%;
-    left: 0;
-    right: 0;
 }
 
 a
@@ -74,7 +59,27 @@ iframe
 
 .warning:focus
 {
-    border: 2px solid DarkViolet;
+    outline: 0;
+}
+
+
+/* Header */
+
+header
+{
+	background-color: black;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+body > header
+{
+    display: block;
+    width: 100%;
+    left: 0;
+    right: 0;
 }
 
 header .layout-wrap > *
@@ -83,10 +88,31 @@ header .layout-wrap > *
 
 }
 
+.search-box
+{
+    float: right;
+}
+
+
+/* Nav Panel */
+
 nav
 {
     padding-top: 50px;
     padding-bottom: 40px;
+}
+
+.notifications
+{
+    position: relative;
+    background-color: #EBEBEB;
+    text-align: left;
+    padding: 10px;
+    padding-left: 15px;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 10px;
 }
 
 .nav-section
@@ -127,10 +153,17 @@ nav
     margin-bottom: 0;
 }
 
+.nav-section:hover
+{
+    background-color: rgba(0, 0, 0 ,0.7);
+    transition: all 0.2s ease-out;
+}
+
 .nav-section:hover .action-list
 {
     opacity: 1;
     height: auto;
+    transition: all 0.2s ease-in;
 }
 
 .menu
@@ -191,7 +224,7 @@ nav
 
 .action-list li:hover
 {
-    background-color: #DEDEDE;
+    background-color: #D1D1D1;
 }
 
 .action-list li:hover a
@@ -199,10 +232,8 @@ nav
     color: #2C3E50;
 }
 
-.search-box
-{
-	float: right;
-}
+
+/* Tabs Section */
 
 .page-body
 {
@@ -213,19 +244,6 @@ nav
     height: 100%;
     bottom: 0;
     position: relative;
-}
-
-.notifications
-{
-    position: relative;
-    background-color: #EBEBEB;
-    text-align: left;
-    padding: 10px;
-    padding-left: 15px;
-    width: 98%;
-    margin-left: auto;
-    margin-right: auto;
-    top: 10px;
 }
 
 .tabs
@@ -302,6 +320,12 @@ nav
     color: #393939 !important;
 }
 
+.tabs-list span
+{
+    position: relative;
+    right: 4px;
+}
+
 .tab-content
 {
     position: relative;
@@ -333,6 +357,9 @@ nav
     cursor: pointer;
 }
 
+
+/* Settings Panel */
+
 .tab-settings-wrap
 {
     position: absolute;
@@ -342,10 +369,9 @@ nav
     right: 38px;
     padding-top: 20px;
     background-color: white;
-    border: 1px solid #7C7C7C;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    box-shadow: -3px 5px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
     clear: right;
 }
 
@@ -396,7 +422,8 @@ form > fieldset:last-child > *
 }
 
 
-/* My Folders Tab */
+/* Bookmarks Tabs */
+
 .tab-content iframe
 { 
     display: block;
