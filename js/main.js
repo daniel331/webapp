@@ -137,19 +137,6 @@ function getPairedFormField(fieldId)
 }
 
 
-/*function toggleValidationDependency(field)
-{
-	if(field.hasAttribute('required'))
-	{
-		field.removeAttr('required');
-	}
-	else
-	{
-		field.setAttribute('required', 'true');
-	}
-}*/
-
-
 /* Make a form field required */
 function addRequiredDependency(field)
 {
@@ -553,14 +540,17 @@ function searchBookmark(event)
 
 
 $(document).ready(function(){
+	// Init tabs
 	document.location.hash = '#quick-reports';
 	UTILS.addEvent(window, "hashchange", setTab);
 	$('#quickTabAnchor').click(setHash);
 	$('#myTabAnchor').click(setHash);
 	$('#teamTabAnchor').click(setHash);
 	$('#publicTabAnchor').click(setHash);
-	$('.tab-content').hide(); // hide all tabs
-	$('#quick-reports-cont').show(); // show quick reports tab
+	$('.tab-content').hide(); 						// hide all tabs
+	$('#quick-reports-cont').show(); 				// show quick reports tab
+
+	// Set button events
 	$('.full-screen-btn').click(openInNewTab);
 	$('#qr-wheel').click(function(){
 		if(toggleVisibility($('#quick-reports-cont .tab-settings-wrap')))
@@ -585,8 +575,10 @@ $(document).ready(function(){
 		return false;
 	});
 
+	// Get notification from data file
 	getNotification();
 
+	// Set dependency event
 	$('.tab-content input').blur(function(event){
 		if (event.target.value != "")
 		{
@@ -598,10 +590,11 @@ $(document).ready(function(){
 		}
 	});
 
+	// Set save events
 	$('#save-rep-form').click(saveQuickBookmarks);
-
 	$('#save-fold-form').click(saveFoldersBookmarks);
 
+	// Set combobox events
 	$('#quick-reports-cont .bookmarks').change(function() {
     	var selectedURL = this.value;
     	$('#quick-rep-iframe').attr('src',selectedURL);
@@ -616,12 +609,12 @@ $(document).ready(function(){
     	expandAnchor.setAttribute('href', selectedURL);
 	});
 
+	// Set search event
 	$('#searchGo').click(searchBookmark);
 
+	// Load data from local storage
 	loadFromLocalStorage();
 
+	// Set keyboard navigation event
 	document.onkeydown = keyboardNav;
-
-
-
 });
